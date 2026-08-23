@@ -1,0 +1,160 @@
+/* alexanderhoehne.ch — Web-Visitenkarte
+   Mobile-first, responsive, ruhig und professionell. */
+
+:root {
+  --bg: #f7f6f2;
+  --bg-raised: #edeae2;
+  --ink: #232320;
+  --ink-soft: #5c5a53;
+  --rule: #ddd8cc;
+  --accent: #2f5d5a;
+  --accent-soft: #6f9994;
+  --link: #2f5d5a;
+  --max-width: 44rem;
+  --font-display: 'Fraunces', Georgia, 'Palatino Linotype', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171a19;
+    --bg-raised: #202422;
+    --ink: #ece9e2;
+    --ink-soft: #a9a79d;
+    --rule: #333734;
+    --accent: #8fc0ba;
+    --accent-soft: #5a8a84;
+    --link: #8fc0ba;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  line-height: 1.65;
+}
+
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: var(--link); text-decoration-color: var(--accent-soft); transition: color 0.2s ease; }
+a:hover { color: var(--accent); }
+
+/* Hero */
+header.hero {
+  padding: 4.5rem 0 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+header.hero .eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+header.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 1.8rem + 1.6vw, 3rem);
+  margin: 0 0 0.5em;
+  line-height: 1.15;
+}
+
+header.hero p.lede {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 38rem;
+  margin: 0;
+}
+
+nav.quicklinks {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.92rem;
+}
+
+nav.quicklinks a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; }
+nav.quicklinks a:hover { color: var(--accent); border-bottom-color: var(--accent-soft); }
+
+/* Sections */
+main section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+main section:last-of-type { border-bottom: none; }
+
+section h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+/* Competency grid */
+.competencies {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 40em) {
+  .competencies { grid-template-columns: 1fr 1fr; }
+}
+
+.competency {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1.4rem 1.5rem;
+}
+
+.competency h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+}
+
+.competency p { margin: 0; color: var(--ink-soft); font-size: 0.97rem; }
+.competency a { font-weight: 600; }
+
+/* Bio */
+section.bio p { max-width: 40rem; }
+
+/* Contact */
+section.contact ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 1.02rem;
+}
+
+section.contact li::before {
+  content: "—";
+  color: var(--accent-soft);
+  margin-right: 0.6rem;
+}
+
+/* Footer */
+footer.site-footer {
+  padding: 2rem 0 3rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+footer.site-footer a { color: var(--ink-soft); }
+footer.site-footer a:hover { color: var(--accent); }
+
+@media (max-width: 22em) {
+  .wrap { padding: 0 1rem; }
+}
