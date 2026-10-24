@@ -1,4 +1,5 @@
-/* Zeigt die neuesten Beiträge aus mysteriendramen.ch und karmaforschung.ch.
+/* Zeigt die neuesten Beiträge aus mysteriendramen.ch und karmaforschung.ch
+   (nur Beiträge, deren Datum erreicht ist).
    Liest die RSS-Feeds beider Blogs; ohne JavaScript bleiben die Links darunter stehen. */
 (function () {
   var box = document.getElementById('neue-beitraege-liste');
@@ -18,7 +19,8 @@
       });
     }).catch(function () { return []; });
   })).then(function (lists) {
-    var items = [].concat.apply([], lists).filter(function (i) { return i.title && i.link && !isNaN(i.date); });
+    var now = new Date();
+    var items = [].concat.apply([], lists).filter(function (i) { return i.title && i.link && !isNaN(i.date) && i.date <= now; });
     if (!items.length) return;
     items.sort(function (a, b) { return b.date - a.date; });
     var ul = document.createElement('ul');
