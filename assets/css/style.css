@@ -179,3 +179,39 @@ footer.site-footer a:hover { color: var(--accent); }
 @media (max-width: 22em) {
   .wrap { padding: 0 1rem; }
 }
+
+/* Sprunglink für Tastatur und Screenreader: erst bei Fokus sichtbar */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--bg-raised);
+  color: var(--ink);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  text-decoration: none;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Publikationen */
+ul.publications { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; max-width: 40rem; }
+ul.publications li { padding-left: 0.2rem; }
+
+/* Neue Beiträge aus den Blogs (per Skript aus den RSS-Feeds) */
+ul.post-teaser { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+ul.post-teaser .meta { font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.02em; }
+ul.post-teaser h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin: 0.15rem 0 0.3rem; }
+ul.post-teaser h3 a { text-decoration: none; color: var(--ink); }
+ul.post-teaser h3 a:hover { color: var(--accent); }
+ul.post-teaser p { margin: 0; color: var(--ink-soft); font-size: 0.97rem; max-width: 40rem; }
+.nowrap { white-space: nowrap; }
