@@ -225,3 +225,22 @@ footer.site-footer .wrap {
   justify-content: space-between;
   align-items: baseline;
 }
+
+/* Neu: Haltung, Blog-Karten, breite Kachel */
+header.hero p.lede + p.lede { margin-top: 0.9rem; }
+p.intro { margin: -0.5rem 0 1.5rem; color: var(--ink-soft); max-width: 40rem; }
+
+ul.stance { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.1rem; max-width: 40rem; }
+ul.stance li { padding-left: 1rem; border-left: 2px solid var(--accent-soft); }
+ul.stance strong { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+
+@media (min-width: 40em) { .competency.wide { grid-column: 1 / -1; } }
+
+a.blog-card { display: block; text-decoration: none; color: inherit; transition: border-color 0.2s ease, transform 0.2s ease; }
+a.blog-card:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+a.blog-card:hover h3 { color: var(--accent); }
+.blog-name { display: block; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+
+.latest { margin-top: 2.25rem; }
+h3.latest-title { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 0 0 1rem; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { a.blog-card { transition: none; } a.blog-card:hover { transform: none; } }
