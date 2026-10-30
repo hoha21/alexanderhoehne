@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /tools/
 Allow: /
 
 Sitemap: https://alexanderhoehne.ch/sitemap.xml
