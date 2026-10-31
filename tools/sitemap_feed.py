@@ -3,8 +3,8 @@
 Aufruf im Hauptordner der Webseite:   python tools/sitemap_feed.py
 
 Grundsätze
-- Aufgenommen werden die Grundseiten (Start, Blog, Über mich, Impressum) und alle
-  Beiträge in blog/. Entwürfe ausserhalb von blog/ (entwuerfe/, _entwuerfe/) bleiben aussen vor.
+- Aufgenommen werden die Grundseiten (Start, Blog, Logologie, Über mich, Impressum) und alle
+  Beiträge in blog/ und logologie/. Entwürfe ausserhalb von blog/ (entwuerfe/, _entwuerfe/) bleiben aussen vor.
 - Seiten mit <meta name="robots" content="noindex"> (Weiterleitungen, Platzhalter)
   werden übersprungen.
 - Titel, Beschreibung, Datum und Rubrik kommen aus dem JSON-LD-Block des Beitrags
@@ -27,7 +27,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = (ROOT / "CNAME").read_text(encoding="utf-8").strip()
 BASE = f"https://{DOMAIN}"
 ZONE = ZoneInfo("Europe/Zurich")
-GRUNDSEITEN = ["index.html", "blog/index.html", "ueber-mich.html", "impressum.html"]
+GRUNDSEITEN = ["index.html", "blog/index.html", "logologie/index.html", "ueber-mich.html", "impressum.html"]
+BEITRAGSORDNER = ["blog", "logologie"]
 
 
 def lies(pfad):
@@ -68,7 +69,8 @@ def url_von(rel):
 
 def beitraege():
     liste = []
-    for datei in sorted((ROOT / "blog").glob("*.html")):
+    dateien = [d for o in BEITRAGSORDNER if (ROOT / o).is_dir() for d in sorted((ROOT / o).glob("*.html"))]
+    for datei in dateien:
         if datei.name == "index.html":
             continue
         html = lies(datei)
@@ -79,7 +81,7 @@ def beitraege():
             print(f"Übersprungen (kein datePublished im JSON-LD): {datei.name}")
             continue
         liste.append({
-            "rel": f"blog/{datei.name}",
+            "rel": datei.relative_to(ROOT).as_posix(),
             "titel": ld.get("headline", ""),
             "beschreibung": ld.get("description", ""),
             "datum": ld["datePublished"][:10],
@@ -143,6 +145,6 @@ def schreibe_feed(posts):
 
 
 if __name__ == "__main__":
-    posts = beitraege() if (ROOT / "blog").is_dir() else []
+    posts = beitraege()
     schreibe_sitemap(posts)
     schreibe_feed(posts)
